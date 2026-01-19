@@ -16,12 +16,21 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = ""
+    };
   }, [onClose]);
 
   return (
-    <div className={css.backdrop} role="dialog" aria-modal="true" onClick={onClose}>
-      <div className={css.modal} >
+    <div
+      className={css.backdrop}
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+    >
+      <div className={css.modal}>
         <button
           className={css.closeButton}
           aria-label="Close modal"
